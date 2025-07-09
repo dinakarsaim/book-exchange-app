@@ -1,0 +1,11 @@
+server/.env
+server/test.http
+
+node_modules/
+client/node_modules/
+server/node_modules/
+
+dist/
+build/
+
+*.log
