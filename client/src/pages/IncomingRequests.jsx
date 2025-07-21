@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
 
+
 function IncomingRequests() {
   const [requests, setRequests] = useState([]);
   const [error, setError] = useState("");
@@ -41,24 +42,28 @@ function IncomingRequests() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>Incoming Borrow Requests</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+    <div className="container">
+      <h1>Incoming Borrow Requests</h1>
+      {error && <p className="error">{error}</p>}
 
       {requests.length === 0 ? (
         <p>No incoming requests.</p>
       ) : (
-        <ul style={{ listStyle: "none", padding: 0 }}>
+        <ul className="request-list">
           {requests.map((r) => (
-            <li key={r._id} style={{ marginBottom: "1rem", border: "1px solid #ccc", padding: "1rem", borderRadius: "8px" }}>
+            <li key={r._id} className="card request-card">
               <p><strong>Book:</strong> {r.book.title}</p>
               <p><strong>Requested by:</strong> {r.requester.name} ({r.requester.email})</p>
               <p><strong>Status:</strong> {r.status}</p>
 
               {r.status === "pending" && (
-                <div style={{ marginTop: "0.5rem" }}>
-                  <button onClick={() => updateStatus(r._id, "accepted")} style={{ marginRight: "1rem" }}>✅ Accept</button>
-                  <button onClick={() => updateStatus(r._id, "rejected")}>❌ Reject</button>
+                <div className="action-buttons">
+                  <button className="accept-btn" onClick={() => updateStatus(r._id, "accepted")}>
+                    Accept
+                  </button>
+                  <button className="reject-btn" onClick={() => updateStatus(r._id, "rejected")}>
+                    Reject
+                  </button>
                 </div>
               )}
             </li>

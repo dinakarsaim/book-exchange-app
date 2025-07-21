@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API from "../services/api"; // Adjust the path if needed
+import API from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 const AddBook = () => {
@@ -35,7 +35,6 @@ const AddBook = () => {
       setDescription("");
       setImage("");
 
-      // Optional: redirect to dashboard or homepage
       setTimeout(() => {
         navigate("/dashboard");
       }, 1500);
@@ -46,8 +45,8 @@ const AddBook = () => {
   };
 
   return (
-    <div style={{ maxWidth: "600px", margin: "auto" }}>
-      <h2>📚 Add a New Book</h2>
+    <div className="add-book-container" style={{ maxWidth: "600px", margin: "auto" }}>
+      <h2>Add a New Book</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {success && <p style={{ color: "green" }}>{success}</p>}
       <form onSubmit={handleSubmit}>

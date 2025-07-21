@@ -25,24 +25,16 @@ function MyRequests() {
   }, []);
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>My Borrow Requests</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+    <div className="container">
+      <h1>My Borrow Requests</h1>
+      {error && <p className="error">{error}</p>}
 
       {requests.length === 0 ? (
         <p>You haven’t requested any books yet.</p>
       ) : (
-        <ul style={{ listStyle: "none", padding: 0 }}>
+        <ul className="request-list">
           {requests.map((r) => (
-            <li
-              key={r._id}
-              style={{
-                marginBottom: "1rem",
-                border: "1px solid #ccc",
-                padding: "1rem",
-                borderRadius: "8px",
-              }}
-            >
+            <li key={r._id} className="card request-card">
               <p><strong>Book:</strong> {r.book?.title || "Book deleted"}</p>
               <p>
                 <strong>Owner:</strong>{" "}
