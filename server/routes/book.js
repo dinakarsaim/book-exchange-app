@@ -28,9 +28,7 @@ router.post("/", authMiddleware, async (req, res) => {
   }
 });
 
-// @route   GET /api/books
-// @desc    Get all books
-// @access  Public
+// GET /api/books
 router.get("/", async (req, res) => {
   try {
     const books = await Book.find().populate("owner", "name email");
@@ -41,9 +39,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// @route   GET /api/my-books
-// @desc    Get books uploaded by the current user
-// @access  Protected
+// GET /api/my-books
 router.get("/my-books", authMiddleware, async (req, res) => {
   try {
     const books = await Book.find({ owner: req.user });
@@ -54,9 +50,7 @@ router.get("/my-books", authMiddleware, async (req, res) => {
   }
 });
 
-// @route   DELETE /api/books/:id
-// @desc    Delete a book by ID (only by its owner)
-// @access  Protected
+// DELETE /api/books/:id
 router.delete("/:id", authMiddleware, async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);
@@ -79,3 +73,7 @@ router.delete("/:id", authMiddleware, async (req, res) => {
 });
 
 module.exports = router;
+
+
+
+

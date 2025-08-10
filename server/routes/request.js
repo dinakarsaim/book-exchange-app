@@ -4,7 +4,6 @@ const Request = require("../models/Request");
 const Book = require("../models/Book");
 const authMiddleware = require("../middleware/authMiddleware");
 
-// Create a new book request
 router.post("/", authMiddleware, async (req, res) => {
   const { bookId } = req.body;
 
@@ -14,12 +13,10 @@ router.post("/", authMiddleware, async (req, res) => {
     const book = await Book.findById(bookId);
     if (!book) return res.status(404).json({ message: "Book not found" });
 
-    // Prevent owner from requesting their own book
     if (book.owner.toString() === req.user) {
       return res.status(403).json({ message: "You cannot request your own book" });
     }
 
-    // Check for existing request
     const existing = await Request.findOne({ book: bookId, requester: req.user });
     if (existing) {
       return res.status(409).json({ message: "You have already requested this book" });
@@ -39,7 +36,6 @@ router.post("/", authMiddleware, async (req, res) => {
   }
 });
 
-// Get requests for books owned by current user
 router.get("/incoming", authMiddleware, async (req, res) => {
   try {
     const requests = await Request.find({ owner: req.user })
@@ -52,7 +48,6 @@ router.get("/incoming", authMiddleware, async (req, res) => {
   }
 });
 
-// GET /api/requests/my
 router.get("/my", authMiddleware, async (req, res) => {
   try {
     const requests = await Request.find({ requester: req.user })
@@ -66,7 +61,6 @@ router.get("/my", authMiddleware, async (req, res) => {
   }
 });
 
-// Accept or reject a request
 router.patch("/:id", authMiddleware, async (req, res) => {
   const { status } = req.body;
 
