@@ -10,7 +10,7 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <h3 className="navbar-logo">Book Barter</h3>
+      <h3 className="navbar-logo">BOOKBARTER</h3>
       <div className="nav-links">
         <button onClick={() => navigate("/")}>Home</button>
         <button onClick={() => navigate("/dashboard")}>Dashboard</button>

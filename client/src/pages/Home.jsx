@@ -50,7 +50,7 @@ const Home = () => {
 
   return (
     <div className="container">
-      <h1>Available Books</h1>
+      <h1 className = "page-header">Available Books</h1>
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div className="grid">
@@ -63,7 +63,14 @@ const Home = () => {
             <p><strong>Author:</strong> {book.author}</p>
             <p><strong>Posted by:</strong> {book.owner?.name || "Unknown"}</p>
             {userId && userId !== book.owner._id && (
-              <button onClick={() => handleRequest(book._id)}>Request Book</button>
+              // <button onClick={() => handleRequest(book._id)}>Request Book</button>
+              <button
+                className="plus-btn"
+                onClick={() => handleRequest(book._id)}
+                aria-label="Request Book"
+              >
+                +
+              </button>
             )}
           </div>
         ))}
