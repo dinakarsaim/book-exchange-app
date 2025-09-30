@@ -1,0 +1,44 @@
+// src/components/Sidebar.jsx
+import React from "react";
+import "./Sidebar.css";
+
+const GENRES = [
+  "Fiction",
+  "Science Fiction",
+  "Fantasy",
+  "Non-fiction",
+  "Mystery",
+  "Thriller",
+  "Romance",
+  "Horror",
+];
+
+const Sidebar = ({ selectedGenre, onSelectGenre }) => {
+  return (
+    <aside className="sidebar">
+      <div className="brand"></div>
+      <h4 className="heading">Genres</h4>
+
+      <ul className="genre-list">
+        <li
+          className={`genre-item ${!selectedGenre ? "active" : ""}`}
+          onClick={() => onSelectGenre(null)}
+        >
+          See All
+        </li>
+
+        {GENRES.map((g) => (
+          <li
+            key={g}
+            className={`genre-item ${selectedGenre === g ? "active" : ""}`}
+            onClick={() => onSelectGenre(g)}
+          >
+            {g}
+          </li>
+        ))}
+      </ul>
+    </aside>
+  );
+};
+
+export default Sidebar;

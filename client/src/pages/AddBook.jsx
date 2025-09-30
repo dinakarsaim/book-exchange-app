@@ -7,6 +7,7 @@ const AddBook = () => {
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [genre, setGenre] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const AddBook = () => {
     try {
       const res = await API.post(
         "/books",
-        { title, author, description, image },
+        { title, author, description, image, genre },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -75,6 +76,20 @@ const AddBook = () => {
           value={image}
           onChange={(e) => setImage(e.target.value)}
         /><br /><br />
+
+        <select value={genre} onChange={(e) => setGenre(e.target.value)} required>
+          <option value="">Select Genre</option>
+          <option value="Fiction">Fiction</option>
+          <option value="Science Fiction">Science Fiction</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Non-fiction">Non-fiction</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Romance">Romance</option>
+          <option value="Horror">Horror</option>
+        </select>
+        <br /><br />
+        
         <button type="submit">Add Book</button>
       </form>
     </div>
