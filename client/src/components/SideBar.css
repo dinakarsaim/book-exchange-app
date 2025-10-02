@@ -44,9 +44,14 @@
   cursor: pointer;
   color: #bfc0c8;
 }
-.genre-item:hover { background: rgba(255,255,255,0.02); color: #fff; }
+
+.genre-item:hover { 
+  background: rgba(255,255,255,0.05); 
+  color: #fff; 
+}
+
 .genre-item.active {
-  background: linear-gradient(180deg, rgba(75,136,255,0.12), rgba(75,136,255,0.06));
+  background: rgba(0,0,0,0.3);
   color: #fff;
   font-weight: 600;
 }
