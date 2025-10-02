@@ -110,26 +110,75 @@ router.post("/", authMiddleware, async (req, res) => {
 });
 
 // GET /api/books  -> optionally filter by ?genre=Name
+// router.get("/", async (req, res) => {
+//   try {
+//     const { genre } = req.query;
+//     const filter = {};
+//     if (genre) {
+//       // exact match:
+//       filter.genre = genre;
+//       // OR case-insensitive match:
+//       // filter.genre = { $regex: new RegExp(`^${genre}$`, "i") };
+//     }
+
+//     const books = await Book.find(filter).populate("owner", "name email");
+//     res.json(books);
+//   } catch (err) {
+//     console.error("Error fetching books:", err.message);
+//     res.status(500).json({ message: "Server error" });
+//   }
+// });
+
+// in routes/book.js
 router.get("/", async (req, res) => {
   try {
-    const { genre } = req.query;
+    const { genre, q } = req.query;
     const filter = {};
-    if (genre) {
-      // exact match:
-      filter.genre = genre;
-      // OR case-insensitive match:
-      // filter.genre = { $regex: new RegExp(`^${genre}$`, "i") };
+    if (genre) filter.genre = genre;
+    if (q) {
+      const regex = new RegExp(q, "i");
+      filter.$or = [{ title: { $regex: regex } }, { author: { $regex: regex } }];
     }
-
     const books = await Book.find(filter).populate("owner", "name email");
     res.json(books);
   } catch (err) {
-    console.error("Error fetching books:", err.message);
+      console.error("Error fetching books:", err.message);
+      res.status(500).json({ message: "Server error" });
+   }
+});
+
+// GET /api/my-books
+router.get("/my-books", authMiddleware, async (req, res) => {
+  try {
+    const books = await Book.find({ owner: req.user });
+    res.json(books);
+  } catch (err) {
+    console.error("Error fetching user's books:", err.message);
     res.status(500).json({ message: "Server error" });
   }
 });
 
-// ... keep other routes like /my-books and delete unchanged
+// DELETE /api/books/:id
+router.delete("/:id", authMiddleware, async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id);
+
+    if (!book) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+
+    if (book.owner.toString() !== req.user) {
+      return res.status(403).json({ message: "Not authorized to delete this book" });
+    }
+
+    await book.deleteOne();
+    res.json({ message: "Book deleted successfully" });
+
+  } catch (err) {
+    console.error("Error deleting book:", err.message);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 module.exports = router;
 
