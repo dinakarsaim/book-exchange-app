@@ -1,24 +1,41 @@
 .sidebar {
   width: 220px;
   padding: 18px;
-  background: #2a2a38;
+  background: #1f1f2b;
   color: #dcdce0;
   border-radius: 8px;
   flex-shrink: 0;
   position: sticky;
-  top: 72px; /* adjust to your navbar height */
-  height: calc(100vh - 80px);
+  top: 0;
+  height: 100vh;
+}
+
+.navbar-logo {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #fff;
+  height: 50px;
 }
 
 .brand {
+  margin-top: 20px;
   color: #fff;
   font-weight: 800;
-  margin-bottom: 10px;
 }
 
-.heading { color: #f1f1f4; margin: 6px 0 12px; font-size: 0.95rem; }
+.heading { 
+  color: #f1f1f4; 
+  margin: 20px 10px 20px; 
+  font-size: 1.2rem; 
+}
 
-.genre-list { list-style: none; padding: 0; margin: 0; display:flex; flex-direction: column; gap: 6px; }
+.genre-list { 
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+  display:flex; 
+  flex-direction: column; gap: 8px; 
+}
 
 .genre-item {
   padding: 8px 10px;

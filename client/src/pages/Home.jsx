@@ -87,6 +87,7 @@ import React, { useEffect, useState } from "react";
 import API from "../services/api"; // your axios instance
 import { jwtDecode } from "jwt-decode";
 import Sidebar from "../components/sideBar";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -144,10 +145,11 @@ const Home = () => {
   };
 
   return (
-    <div className="app-layout" style={{ display: "flex", gap: 28, padding: 28 }}>
+    <div className="app-layout">
       <Sidebar selectedGenre={selectedGenre} onSelectGenre={setSelectedGenre} />
 
       <main className="main-content" style={{ flex: 1 }}>
+        <Navbar></Navbar>
         <h1 className="page-header">Available Books {selectedGenre ? `— ${selectedGenre}` : ""}</h1>
 
         {loading && <p>Loading...</p>}

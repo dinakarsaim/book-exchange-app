@@ -16,8 +16,10 @@ const GENRES = [
 const Sidebar = ({ selectedGenre, onSelectGenre }) => {
   return (
     <aside className="sidebar">
-      <div className="brand"></div>
-      <h4 className="heading">Genres</h4>
+      <div className="brand">
+        <h3 className="navbar-logo">BOOKBARTER</h3>
+      </div>
+      <h3 className="heading">Genres</h3>
 
       <ul className="genre-list">
         <li

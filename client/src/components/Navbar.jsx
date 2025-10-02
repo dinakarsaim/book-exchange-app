@@ -27,6 +27,7 @@
 
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "./Navbar.css";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <h3 className="navbar-logo">BOOKBARTER</h3>
+      {/* <h3 className="navbar-logo">BOOKBARTER</h3> */}
       <div className="nav-links">
         <button onClick={() => navigate("/")}>Home</button>
         <button onClick={() => navigate("/dashboard")}>Dashboard</button>

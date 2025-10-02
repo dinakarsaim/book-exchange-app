@@ -7,11 +7,12 @@ body {
 /* Home.css or a global layout file */
 .app-layout {
   display: flex;               /* crucial: makes children sit horizontally */
-  gap: 28px;                   /* spacing between sidebar and main */
+  gap: 0;                   /* spacing between sidebar and main */
   align-items: flex-start;     /* top-align columns */
-  padding: 28px 40px;          /* page padding */
-  min-height: calc(100vh - 56px); /* adjust if you have a top navbar height (56px example) */
+  padding: 0;         
+  min-height: calc(100vh - 56px);
 }
+
 
 .container {
   max-width: 1000px;
@@ -26,6 +27,7 @@ body {
 .page-header {
   text-align: left;
   color: #fff;
+  padding-left: 50px;
 }
 
 h1 {
@@ -39,6 +41,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 5rem;
+  padding-left: 50px;
   /* grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); */
 }
 
