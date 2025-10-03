@@ -20,6 +20,10 @@ const requestSchema = new mongoose.Schema({
     type: String,
     enum: ["pending", "accepted", "rejected"],
     default: "pending",
+  },
+  pickupInfo: {
+    type: String,
+    default: null,
   }
 }, { timestamps: true });
 

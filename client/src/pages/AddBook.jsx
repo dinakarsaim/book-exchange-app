@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import API from "../services/api";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import OtherNavbar from "../components/OtherNavbar";
 
 const AddBook = () => {
   const [title, setTitle] = useState("");
@@ -48,8 +49,8 @@ const AddBook = () => {
 
   return (
     <div className="over_container">
-      <Navbar/>
-    <div className="add-book-container" style={{ maxWidth: "600px", margin: "auto" }}>
+      <OtherNavbar/>
+    <div className="add-book-container" style={{ maxWidth: "600px", margin: "auto", marginTop: "30px" }}>
       <h2>Add a New Book</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {success && <p style={{ color: "green" }}>{success}</p>}

@@ -61,8 +61,46 @@ router.get("/my", authMiddleware, async (req, res) => {
   }
 });
 
+// router.patch("/:id", authMiddleware, async (req, res) => {
+//   const { status } = req.body;
+
+//   if (!["accepted", "rejected"].includes(status)) {
+//     return res.status(400).json({ message: "Invalid status" });
+//   }
+
+//   try {
+//     const request = await Request.findById(req.params.id);
+//     if (!request) return res.status(404).json({ message: "Request not found" });
+
+//     if (request.owner.toString() !== req.user) {
+//       return res.status(403).json({ message: "Unauthorized" });
+//     }
+
+//     request.status = status;
+
+//     if (status === "accepted") {
+//       request.pickupInfo = pickupInfo || request.pickupInfo || null;
+//     } else {
+//       request.pickupInfo = null;
+//     }
+
+//     await request.save();
+
+//     const populated = await Request.findById(request._id)
+//       .populate("book", "title author")
+//       .populate("requester", "name email")
+//       .populate("owner", "name email");
+
+//     res.json({ message: `Request ${status}`, request: populated });
+//     // res.json({ message: `Request ${status}`, request});
+//   } catch (err) {
+//     console.error("Updating request failed:", err.message);
+//     res.status(500).json({ message: "Server error" });
+//   }
+// });
+
 router.patch("/:id", authMiddleware, async (req, res) => {
-  const { status } = req.body;
+  const { status, pickupInfo } = req.body;
 
   if (!["accepted", "rejected"].includes(status)) {
     return res.status(400).json({ message: "Invalid status" });
@@ -77,8 +115,24 @@ router.patch("/:id", authMiddleware, async (req, res) => {
     }
 
     request.status = status;
+
+    // only set pickupInfo when owner accepts (optional)
+    if (status === "accepted") {
+      request.pickupInfo = pickupInfo || request.pickupInfo || null;
+    } else {
+      // when rejected, we can clear pickupInfo
+      request.pickupInfo = null;
+    }
+
     await request.save();
-    res.json({ message: `Request ${status}`, request});
+
+    // return populated request so client can reflect the new data
+    const populated = await Request.findById(request._id)
+      .populate("book", "title author")
+      .populate("requester", "name email")
+      .populate("owner", "name email");
+
+    res.json({ message: `Request ${status}`, request: populated });
   } catch (err) {
     console.error("Updating request failed:", err.message);
     res.status(500).json({ message: "Server error" });

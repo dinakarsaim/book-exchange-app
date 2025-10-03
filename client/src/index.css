@@ -42,6 +42,7 @@ h1 {
 }
 
 .card {
+  width: 170px;
   background: #2a2a38;
   padding : 8px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -65,6 +66,12 @@ h1 {
   font-size: 1.25rem;
   margin: 0.5rem 0;
   color: #fff;
+  word-break: break-word;   
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .card p {
