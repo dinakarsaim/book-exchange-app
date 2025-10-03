@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
+import Navbar from "../components/Navbar";
 
 
 function IncomingRequests() {
@@ -42,8 +43,10 @@ function IncomingRequests() {
   };
 
   return (
+    <div className="over-container">
+      <Navbar/>
     <div className="container">
-      <h1>Incoming Borrow Requests</h1>
+      <h1 className="page-header">Incoming Borrow Requests</h1>
       {error && <p className="error">{error}</p>}
 
       {requests.length === 0 ? (
@@ -70,6 +73,7 @@ function IncomingRequests() {
           ))}
         </ul>
       )}
+    </div>
     </div>
   );
 }

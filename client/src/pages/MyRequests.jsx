@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
+import Navbar from "../components/Navbar";
 
 function MyRequests() {
   const [requests, setRequests] = useState([]);
@@ -25,8 +26,10 @@ function MyRequests() {
   }, []);
 
   return (
+    <div className="over-container">
+      <Navbar/>
     <div className="container">
-      <h1>My Borrow Requests</h1>
+      <h1 className="page-header">My Borrow Requests</h1>
       {error && <p className="error">{error}</p>}
 
       {requests.length === 0 ? (
@@ -47,6 +50,7 @@ function MyRequests() {
           ))}
         </ul>
       )}
+    </div>
     </div>
   );
 }
