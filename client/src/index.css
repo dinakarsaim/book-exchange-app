@@ -258,3 +258,55 @@ button {
 .bookie {
   margin-top: 10px;
 }
+
+/* .rating { margin-top: 8px; display:flex; align-items:center; gap:8px; color:#f6c455; }
+.rating-number { color:#cfcfd6; font-weight:700; font-size:0.95rem; }
+.rating-none { color:#8b8b94; font-size:0.95rem; }
+.rating-stars span { margin-right: 2px; font-size: 14px; color: #f6c455; } */
+
+/* star container */
+.stars-wrapper { display: inline-flex; gap: 4px; align-items: center; }
+
+/* each star wrapper is relative so top layer can be clipped */
+.star {
+  position: relative;
+  display: inline-block;
+  width: 16px;   /* adjust size */
+  height: 16px;
+  line-height: 16px;
+  font-size: 16px;
+  /* ensure overflow hidden for the top layer width clipping */
+  overflow: visible;
+}
+
+/* bottom (empty) star */
+.star-bottom {
+  color: rgba(255, 255, 255, 0.18); /* unfilled color, tweak as needed */
+  position: relative;
+  z-index: 1;
+}
+
+/* top (filled) star that will be clipped by its width */
+.star-top {
+  color: #f6c455; /* filled color */
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* optional: rating number styling next to stars */
+.rating-number {
+  margin-left: 8px;
+  color: #cfcfd6;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.rating-none {
+  color:#8b8b94; 
+  font-size:0.95rem;
+}
