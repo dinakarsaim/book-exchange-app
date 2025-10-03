@@ -24,6 +24,16 @@
   font-weight: 800;
 }
 
+.logo-book{
+  color: #3498db;
+  margin-right: 8px;
+}
+
+.logo-hive{
+  color: #fff;
+
+}
+
 .heading { 
   color: #f1f1f4; 
   margin: 20px 10px 20px; 

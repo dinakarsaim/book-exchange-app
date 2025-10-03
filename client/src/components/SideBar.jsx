@@ -17,7 +17,10 @@ const Sidebar = ({ selectedGenre, onSelectGenre }) => {
   return (
     <aside className="sidebar">
       <div className="brand">
-        <h3 className="navbar-logo">BOOKBARTER</h3>
+        <h3 className="navbar-logo">
+          <span className="logo-book">BOOK</span>
+          <span className="logo-hive">HIVE</span>
+        </h3>
       </div>
       <h3 className="heading">Genres</h3>
 
@@ -26,7 +29,7 @@ const Sidebar = ({ selectedGenre, onSelectGenre }) => {
           className={`genre-item ${!selectedGenre ? "active" : ""}`}
           onClick={() => onSelectGenre(null)}
         >
-          See All
+          All
         </li>
 
         {GENRES.map((g) => (

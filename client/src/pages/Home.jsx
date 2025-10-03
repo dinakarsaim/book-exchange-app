@@ -231,15 +231,15 @@ const Home = () => {
             {qParam ? `Search: "${qParam}"` : `Available Books ${selectedGenre ? `— ${selectedGenre}` : ""}`}
           </h1>
 
-          {loading && <p>Loading...</p>}
+          {loading && <p className="fallback">Loading...</p>}
           {error && <p style={{ color: "red" }}>{error}</p>}
 
           <div className="grid">
             {books.map((book) => (
               <div className="card" key={book._id}>
                 {book.image ? <img src={book.image} alt={book.title} /> : <div className="cover placeholder" />}
-                <h2>{book.title}</h2>
-                <p><strong>Author:</strong> {book.author}</p>
+                <h2 className="book-name">{book.title}</h2>
+                <p><strong></strong> {book.author}</p>
                 <p><strong>By:</strong> {book.owner?.name || "Unknown"}</p>
 
                 <div className="rating">

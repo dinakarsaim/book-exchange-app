@@ -120,7 +120,7 @@ function Navbar() {
             onChange={(e) => setQ(e.target.value)}
             aria-label="Search"
           />
-          <button type="submit" aria-label="Submit search">🔍</button>
+          {/* <button type="submit" aria-label="Submit search">🔍</button> */}
         </form>
 
         <button onClick={() => navigate("/")}>Home</button>

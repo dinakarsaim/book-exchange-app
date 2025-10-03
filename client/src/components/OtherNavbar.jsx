@@ -112,7 +112,11 @@ function OtherNavbar() {
     <nav className="navbar" style={{backgroundColor : "#1f1f2b", height: "30px"}}>
 
         <div className="brand" style={{margin: "0"}}>
-            <h3 className="navbar-logo">BOOKBARTER</h3>
+            <h3 className="navbar-logo">
+                <span className="logo-book">BOOK</span>
+                <span className="logo-hive">HIVE</span>
+
+            </h3>
         </div>
 
       <div className="nav-links">
@@ -124,7 +128,7 @@ function OtherNavbar() {
             onChange={(e) => setQ(e.target.value)}
             aria-label="Search"
           />
-          <button type="submit" aria-label="Submit search">🔍</button>
+          {/* <button type="submit" aria-label="Submit search">🔍</button> */}
         </form>
 
         <button onClick={() => navigate("/")}>Home</button>

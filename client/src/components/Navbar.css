@@ -30,6 +30,19 @@
   background-color: #000000;
 }
 
+.button-clicked {
+  background: #2a2a38;
+  border: none;
+  margin-top: 0;
+  margin-left: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 0.5rem;
+  transition: color 0.3s ease;
+
+}
+
 .logout-btn {
     margin-top: 0;
     margin-left: 20px;
@@ -74,7 +87,7 @@
   display:flex;
   align-items:center;
   gap:6px;
-  margin-right:12px;
+  margin-right:300px;
 }
 
 .nav-search input {
